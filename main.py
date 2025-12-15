@@ -2,27 +2,28 @@ from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 
 from pdf_to_csv import pdf_to_csv
-from vector import get_retriever   # <-- function, not a global retriever
+from vector import get_retriever
 
-# --------- STEP 1: choose input / output ---------
-pdf_path = input("PDF path: ").strip()
-out_csv  = input("Output CSV name: ").strip()
+# --- Choose PDF (single paper mode) ---
+pdf_path = input("PDF path (e.g. papers/paper.pdf): ").strip()
+out_csv  = input("Output CSV (Enter for default): ").strip() or None
 
-# --------- STEP 2: convert PDF -> CSV ---------
-pdf_to_csv(pdf_path, out_csv)
+# Convert PDF -> CSV (or reuse if up-to-date)
+out_csv = pdf_to_csv(pdf_path, out_csv)
 
-# --------- STEP 3: build retriever for THIS CSV ---------
+# Build retriever for this CSV
 retriever = get_retriever(out_csv, k=5)
 
-# --------- STEP 4: LLM setup ---------
+# LLM (chat model)
 model = OllamaLLM(model="llama3")
 
 template = """
 You are a helpful assistant for summarizing and answering questions using research papers.
 Use ONLY the provided research excerpts.
+If the answer is not in the excerpts, say: "Not found in the provided research excerpts."
 Cite claims like (page X, chunk Y).
 
-Research:
+Research excerpts:
 {research}
 
 Question: {question}
@@ -38,7 +39,6 @@ def format_docs(docs):
         for d in docs
     )
 
-# --------- STEP 5: chat loop ---------
 while True:
     print("\n-------------------------------")
     question = input("Ask your question (q to quit): ").strip()
@@ -48,9 +48,5 @@ while True:
     docs = retriever.invoke(question)
     research = format_docs(docs)
 
-    result = chain.invoke({
-        "research": research,
-        "question": question
-    })
-
+    result = chain.invoke({"research": research, "question": question})
     print(result)
