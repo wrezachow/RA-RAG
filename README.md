@@ -23,7 +23,7 @@ No cloud APIs. No data leaves your machine.
 
 ## Requirements
 
-- Python **3.10+**
+- Python **3.12+**
 - [Ollama](https://ollama.com/) installed and running locally
 
 ---
