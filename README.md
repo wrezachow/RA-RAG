@@ -116,14 +116,4 @@ Embedding models can be swapped (e.g. `nomic-embed-text`) depending on speed vs 
 ---
 
 ## Motivation
-
-Many RAG demos:
-- hide data behind APIs
-- mix ingestion and inference
-- obscure how retrieval works
-
-RA-RAG keeps everything **local, explicit, and inspectable**, making it useful for:
-- academic research
-- private document analysis
-- learning RAG systems deeply
-- portfolio and systems design work
+I honestly made this to aid in reading research papers. A lot of times I find myself not understanding a particular topic and this helps me in that.
