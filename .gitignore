@@ -201,6 +201,17 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
+# Chroma DB
+chroma_langchain_db/
+chrome_langchain_db/
+*.sqlite3
+
+# Generated CSVs
+*.csv
+
+# PDFs (optional: keep PDFs out of git if they're large/copyrighted)
+# papers/*.pdf
+
 # Marimo
 marimo/_static/
 marimo/_lsp/
