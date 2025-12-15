@@ -17,7 +17,6 @@ No cloud APIs. No data leaves your machine.
 - Local inference with **Ollama (llama3)**
 - Fully private and offline
 - Answers grounded in retrieved excerpts with citations
-- Deterministic single-paper workflow
 
 ---
 
