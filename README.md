@@ -104,15 +104,5 @@ Embedding models can be swapped (e.g. `nomic-embed-text`) depending on speed vs 
 
 ---
 
-## Roadmap
-
-- Multi-paper querying
-- Section-aware chunking (Abstract / Methods / Results)
-- Hallucination safeguards
-- Incremental ingestion without DB rebuilds
-- GUI / Canvas-style interface
-
----
-
 ## Motivation
 I honestly made this to aid in reading research papers. A lot of times I find myself not understanding a particular topic and this helps me in that.
